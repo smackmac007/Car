@@ -1,22 +1,10 @@
 name: sample
 on:
-  push:
   workflow_dispatch:
 
 jobs:
-  # Runs on GitHub's own runner (uses free minutes).
   hosted:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - run: echo "hello from $(uname -a)"
-
-  # Runs on your own runner (e.g. on Railway). No GitHub minutes used.
-  self-hosted:
-    runs-on: [self-hosted, railway]
-    steps:
-      - uses: actions/checkout@v4
-      - run: |
-          echo "hello from $(uname -a)"
-          nproc; free -m
-          docker version || echo "no docker (expected on Railway)"

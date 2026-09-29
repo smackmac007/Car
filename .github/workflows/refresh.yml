@@ -1,0 +1,13 @@
+name: refresh
+on:
+  schedule:
+    - cron: "30 2,14 * * *"   # 08:00 and 20:00 IST (UTC+5:30)
+  workflow_dispatch:           # manual "Run workflow" button
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refresh
+        run: echo "Refresh ran at $(date -u) UTC / $(TZ=Asia/Kolkata date) IST"   # TODO: replace with the real refresh command
